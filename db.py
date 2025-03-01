@@ -90,6 +90,6 @@ def insert_access_log(status, name):
     collection.insert_one(log_entry)
     print(f"[LOG] Access logged with status: {status}")
 
-# Ensure `name` is defined before calling the function
-name = "John Doe"  # Replace this with an actual value
-insert_access_log("Success", name)
+# # Ensure `name` is defined before calling the function
+# name = "John Doe"  # Replace this with an actual value
+# insert_access_log("Success", name)
