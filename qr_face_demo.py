@@ -403,6 +403,8 @@ from db import insert_access_log
 # Set up serial communication with Arduino
 try:
     arduino = serial.Serial(port='COM3', baudrate=9600, timeout=1)
+    if arduino:
+        print("Success establishing connection with arduino")
     time.sleep(2)
 except Exception as e:
     print(f"[ERROR] Could not connect to Arduino: {e}")
@@ -462,8 +464,12 @@ while True:
 
                             if arduino:
                                 print("[INFO] Sending unlock signal to Arduino...")
-                                arduino.write(b'o')
-                                time.sleep(2)
+                                # arduino.write(bytes('o', 'utf-8'))
+                                arduino.write("ON".encode('utf-8'))
+                                time.sleep(5)
+                                print("DOOR is about to be closed")
+                                # arduino.write(bytes('c', 'utf-8'))  # Output the given byte string over the serial port.
+                                arduino.write("OFF".encode('utf-8'))
 
                             cap.release()
                             cv2.destroyAllWindows()
